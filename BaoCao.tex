@@ -20,25 +20,25 @@ Mục tiêu hiểu về Linux kernel module và hệ thống quản lý file và
 
 \section{Linux kernel module}
 
-Kernel module là một đoạn code có thể được tải vào kernel hoặc ngừng tải tùy theo yêu cầu. Kernel module dùng để mở rộng các tính năng của kernel mà không cần phải khởi động lại máy. Ví dụ như driver của thiết bị là một kernel module, khi máy tính nhận thiết bị mới như bàn phím hay chuột, driver của thiết bị sẽ được tải vào kernel.  
+Kernel module là một đoạn code có thể được tải vào kernel hoặc ngừng tải tùy theo yêu cầu. Kernel module dùng để mở rộng các tính năng của kernel mà không cần phải khởi động lại máy. Ví dụ như driver của thiết bị là một kernel module, khi máy tính nhận thiết bị mới như bàn phím hay chuột, driver của thiết bị sẽ được tải vào kernel.
 
-Nếu không có kernel module, chúng ta phải tải tất cả driver của thiết bị vào trong kernel dẫn đến dung lượng của kernel trở nên rất lớn. Bên cạnh đó mỗi lần sửa lỗi driver của thiết bị hoặc thêm tính năng mới đều yêu cầu build lại kernel và khởi động lại máy, dẫn đến tốn thời gian và chi phí. 
+Nếu không có kernel module, chúng ta phải tải tất cả driver của thiết bị vào trong kernel dẫn đến dung lượng của kernel trở nên rất lớn. Bên cạnh đó mỗi lần sửa lỗi driver của thiết bị hoặc thêm tính năng mới đều yêu cầu build lại kernel và khởi động lại máy, dẫn đến tốn thời gian và chi phí.
 
 Trong Linux, kernel module viết bằng \texttt{C}, sau khi compile sẽ có dạng \texttt{*.ko}. Cài đặt kernel module bằng câu lệnh \texttt{insmod} hoặc \texttt{modporbe} và gỡ cài đặt bằng câu lệnh \texttt{rmmod}. Xem thông tin của kernel module về tác giả, license,  bằng câu lệnh \texttt{modinfo}.
 
 Chương trình \texttt{C} thông thường sẽ thực thi những câu lệnh trong hàm \texttt{main()}. Còn kernel module khi tải vào kernel sẽ gọi hàm được xác định bằng \texttt{module\_init}. Và khi kernel module kết thúc, sẽ gọi hàm được xác định bằng \texttt{module\_exit}
- 
-\section{Hệ thống quản lý file và device trong Linux}
- 
-Tất cả mọi thứ trong Linux đều là file\cite{file}. Có nghĩa là tiến trình, file, thư mục, socket, ... đều được biểu diễn bằng file. Trong \texttt{/dev} chứa các file đặc biệt dùng gọi là device file. 
 
-Có 2 loại là character device và block device. Những file này là interface cho driver của các thiết bị. Ví dụ như \texttt{/dev/cdrom} chỉ tới ổ CD-ROM của máy tính. 
+\section{Hệ thống quản lý file và device trong Linux}
+
+Linux duy trì một cấu trúc duy nhất để quản lý file. Đỉnh của cấu trúc là root directory, tên là \texttt{/}. Tất cả mọi thứ trong Linux đều là file\cite{file}. Có nghĩa là tiến trình, file, thư mục, socket, ... đều được biểu diễn bằng file. Trong \texttt{/dev} chứa các file đặc biệt dùng gọi là device file.
+
+Có 2 loại là character device và block device. Những file này là interface cho driver của các thiết bị. Ví dụ như \texttt{/dev/cdrom} chỉ tới ổ CD-ROM của máy tính.
 
 Character device là các device có driver giao tiếp bằng cách gửi nhận từng character. Character device thường là bàn phím, chuột, \dots . Block device là các device có driver giao tiếp bằng cách gửi nhận từng block dữ liệu. Block device thường là ổ cứng, USB, \dots .
 
 \section{Giao tiếp giữa tiến trình ở user space và kernel space}
 
-Bộ nhớ trong Linux được chia thành 2 vùng phân biệt là user space và kernel space. Kernel space là nơi kernel thực thi các tác vụ. User space là nơi các tiến trình người dùng được thực thi. 
+Bộ nhớ trong Linux được chia thành 2 vùng phân biệt là user space và kernel space. Kernel space là nơi kernel thực thi các tác vụ. User space là nơi các tiến trình người dùng được thực thi.
 
 Trong user space, tiến trình bị giới hạn khả năng truy cập vào bộ nhớ còn kernel space thì có toàn quyền truy cập.  Tiến trình trong user space  có thể truy cập vào một phần nhỏ của kernel space bằng \texttt{system calls}.
 
