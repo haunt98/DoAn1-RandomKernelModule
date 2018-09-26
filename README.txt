@@ -12,7 +12,8 @@ Yêu cầu
 
 Máy tính chạy ubuntu và có cài đặt
 
-	sudo apt install linux-headers-generic
+	sudo apt install build-essential libelf-dev \
+		linux-headers-generic
 
 Cài đặt module
 ==============
