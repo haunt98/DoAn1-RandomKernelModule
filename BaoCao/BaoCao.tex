@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-Mục tiêu hiểu về Linux kernel module và hệ thống quản lý file và device trong Linux, 
+Mục tiêu hiểu về Linux kernel module và hệ thống quản lý file và device trong Linux,
 giao tiếp giữa tiến trình ở user space và kernel space.
 \end{abstract}
 
@@ -24,34 +24,34 @@ Kernel module là một đoạn code có thể được load vào kernel hoặc 
 Kernel module dùng để mở rộng các tính năng của kernel mà không cần phải build lại kernel và khởi động lại máy.
 Ví dụ như khi máy tính nhận thiết bị mới như bàn phím hay chuột, driver của thiết bị sẽ được tải vào kernel nhờ vào kernel module.
 
-Nếu không sử dụng kernel module, phải load tất cả driver vào kernel dẫn đến dung lượng của kernel phình to. 
+Nếu không sử dụng kernel module, phải load tất cả driver vào kernel dẫn đến dung lượng của kernel phình to.
 Bên cạnh đó mỗi lần fix lỗi driver hoặc thêm tính năng mới đều phải build lại kernel và khởi động lại máy.
 
-Trong Linux, kernel module viết bằng \texttt{C}, sau khi compile sẽ có dạng \texttt{*.ko}. 
-Cài đặt kernel module bằng câu lệnh \texttt{insmod}, gỡ cài đặt bằng câu lệnh \texttt{rmmod}. 
+Trong Linux, kernel module viết bằng \texttt{C}, sau khi compile sẽ có dạng \texttt{*.ko}.
+Cài đặt kernel module bằng câu lệnh \texttt{insmod}, gỡ cài đặt bằng câu lệnh \texttt{rmmod}.
 Xem thông tin của kernel module về tác giả, license, \dots bằng câu lệnh \texttt{modinfo}.
 
 \section{Hệ thống quản lý file và device trong Linux}
 
-Linux duy trì một cấu trúc duy nhất để quản lý file. 
-Đỉnh của cấu trúc là root directory, gọi là \texttt{/}. 
-Tất cả mọi thứ trong Linux đều là file\cite{file}. 
-Có nghĩa là tiến trình, file, thư mục, socket, \dots đều được biểu diễn bằng file. 
+Linux duy trì một cấu trúc duy nhất để quản lý file.
+Đỉnh của cấu trúc là root directory, gọi là \texttt{/}.
+Tất cả mọi thứ trong Linux đều là file\cite{file}.
+Có nghĩa là tiến trình, file, thư mục, socket, \dots đều được biểu diễn bằng file.
 Trong \texttt{/dev} chứa các file đặc biệt gọi là device file.
 
-Có 2 loại là character device và block device. 
-Những file này là interface cho driver của các thiết bị. 
+Có 2 loại là character device và block device.
+Những file này là interface cho driver của các thiết bị.
 Ví dụ như \texttt{/dev/cdrom} chỉ tới ổ CD-ROM của máy tính.
 
-Character device là các device có driver giao tiếp bằng cách gửi nhận từng character. 
-Character device thường là bàn phím, chuột, \dots . 
-Block device là các device có driver giao tiếp bằng cách gửi nhận từng block dữ liệu. 
+Character device là các device có driver giao tiếp bằng cách gửi nhận từng character.
+Character device thường là bàn phím, chuột, \dots .
+Block device là các device có driver giao tiếp bằng cách gửi nhận từng block dữ liệu.
 Block device thường là ổ cứng, USB, \dots .
 
 \section{Giao tiếp giữa tiến trình ở user space và kernel space}
 
-Bộ nhớ trong Linux được chia thành 2 vùng phân biệt là user space và kernel space. 
-Kernel space là nơi kernel thực thi các tác vụ. 
+Bộ nhớ trong Linux được chia thành 2 vùng phân biệt là user space và kernel space.
+Kernel space là nơi kernel thực thi các tác vụ.
 User space là nơi các tiến trình người dùng được thực thi.
 
 Trong user space, tiến trình bị giới hạn khả năng truy cập vào bộ nhớ còn kernel space thì có toàn quyền truy cập.
