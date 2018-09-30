@@ -2,7 +2,7 @@
 Random Module
 =============
 
-Nguyễn Trần Hậu - MSSV: 1612180
+Nguyễn Trần Hậu - MSSV 1612180
 
 Linux kernel module tạo ra số ngẫu nhiên bằng character device,
 các tiến trình ở userspace có thể open và read các số ngẫu nhiên
