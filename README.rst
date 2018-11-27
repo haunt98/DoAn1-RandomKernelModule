@@ -36,6 +36,8 @@ Gỡ cài đặt module
 Test module
 -----------
 
+::
+
     make test
     sudo ./test_rand_char_device.o
 
